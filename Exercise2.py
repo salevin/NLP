@@ -1,12 +1,12 @@
-import nltk
 from collections import Counter
 
-if __name__ == '__main__':
-    tags = nltk.corpus.brown.tagged_words()
-    keys = [i[0] for i in tags]
-    occurs = Counter(keys)
-    most_common = occurs.most_common(1)[0][0]
-    print("The most common word is \"%s\"" % most_common)
+import nltk
 
+tags = nltk.corpus.brown.tagged_words()
+
+if __name__ == '__main__':
+    occurs = Counter([i[0] for i in tags])
+    most_common = occurs.most_common(1)[0][0]
     over_two = list(i for i in occurs if occurs.get(i) >= 2)
-    print(over_two)
+    print("The most common word is \"%s\"" % most_common)
+    print("There are %s words with over two occurrences" % len(over_two))
